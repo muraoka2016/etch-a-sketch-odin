@@ -2,6 +2,7 @@ let container = document.querySelector(".container");
 let inputNumber = document.querySelector("#inputNumber");
 let change = document.querySelector("#change");
 let warning = document.querySelector("#warning");
+let reset = document.querySelector("#reset");
 
 let draw = false;
 document.addEventListener("mousedown", () => {
@@ -15,6 +16,9 @@ document.addEventListener("mouseup", () => {
 let size = 16;
 const squareSize = 100 / size;
 
+function randomColor() {
+  return `hsl(${Math.random() * 360}, 100%, 70%)`;
+}
 change.addEventListener("click", () => {
   if (
     inputNumber.value <= 0 ||
@@ -30,6 +34,12 @@ change.addEventListener("click", () => {
   }
 });
 
+reset.addEventListener("click", () => {
+  size = 16;
+  container.textContent = "";
+  createGrid();
+});
+
 function createGrid() {
   for (let i = 0; i < size; i++) {
     const line1 = document.createElement("div");
@@ -40,6 +50,8 @@ function createGrid() {
     for (let j = 0; j < size; j++) {
       const square = document.createElement("div");
       square.classList.add("square");
+      square.style.opacity = "1";
+      square.style.backgroundColor = "#ffe0cc";
       square.style.width = `${squareSize}%`;
       square.style.flex = "1";
       square.style.boxSizing = "border-box";
@@ -48,7 +60,13 @@ function createGrid() {
 
       square.addEventListener("mousemove", () => {
         if (draw) {
-          square.style.backgroundColor = "black";
+          let currentOpacity = Number(square.dataset.opacity) || 0;
+
+          currentOpacity += 0.1;
+
+          square.dataset.opacity = currentOpacity;
+
+          square.style.backgroundColor = `rgba(0, 0, 0, ${currentOpacity})`;
         }
       });
 

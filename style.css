@@ -2,6 +2,8 @@
   box-sizing: border-box;
 }
 body {
+  background: linear-gradient(to top, #ff5f6d, #ffc371);
+  font-family: "Orbitron", sans-serif;
   margin: 0;
   padding: 2em 0;
   display: flex;
@@ -16,14 +18,51 @@ body {
   flex-direction: column;
 }
 
+h1 {
+  font-size: 40px;
+}
+
 .input-container {
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 1em;
   gap: 1em;
 }
 
+label {
+  font-size: 20px;
+}
 input {
   width: 40px;
+  height: 20px;
+}
+button {
+  background: #1a1a2e; /* escuro pra contrastar */
+  color: #ffc371;
+  border: 2px solid #ff5f6d;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-family: "Press Start 2P", cursive;
+  cursor: pointer;
+
+  box-shadow:
+    0 0 5px #ff5f6d,
+    0 0 10px #ff5f6d;
+
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  background: #ff5f6d;
+  color: #1a1a2e;
+
+  box-shadow:
+    0 0 10px #ff5f6d,
+    0 0 20px #ff5f6d,
+    0 0 40px #ffc371;
+
+  transform: scale(1.05);
 }
 #warning {
   white-space: pre-line;
